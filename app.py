@@ -27,24 +27,20 @@ def access_page():
 
     d = {"code": code, "client_id": cid, "client_secret": csc, "redirect_uri": redir, "grant_type": "authorization_code"}
 
-#    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-
+    # build request string
     s = "?"
     for k in d.keys():
         s += k + "=" + d[k] + "&"
-
+    # trim off last '?'
     s = s[:-1]
 
-
+    # send post request to get access token
     resp = requests.post('https://www.googleapis.com/oauth2/v4/token'+s)
     token = resp.json()['access_token']
-    randoms = resp.json()
-    print randoms
 
+    # get profile info from G+ API
     r = requests.get("https://www.googleapis.com/plus/v1/people/me", headers={'Authorization': 'Bearer '+token})
-
     dd = r.json()
-
     return dd["displayName"] + "<br>" + dd['url'] + "<br>" + secret
 
 if __name__ == "__main__":
