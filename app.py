@@ -6,7 +6,7 @@ import random
 import string
 
 app = Flask(__name__)
-
+URL = "https://oauth2-demo-211019.appspot.com"
 
 @app.route('/')
 def home_page():
@@ -15,7 +15,7 @@ def home_page():
 @app.route('/oauth')
 def oauth_page():
     randoms = ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(8)])
-    return redirect("https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=391943231789-nlso1fuhofpf8hl0basc6lmts089svts.apps.googleusercontent.com&redirect_uri=https://8080-dot-4071604-dot-devshell.appspot.com/access&scope=email&state="+randoms)
+    return redirect("https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=391943231789-nlso1fuhofpf8hl0basc6lmts089svts.apps.googleusercontent.com&redirect_uri=%s/access&scope=email&state=%s" % (URL, randoms))
 
 @app.route('/access', methods=['GET', 'POST'])
 def access_page():
@@ -23,7 +23,7 @@ def access_page():
     code = str(request.args['code'])
     cid = "391943231789-nlso1fuhofpf8hl0basc6lmts089svts.apps.googleusercontent.com"
     csc = "QnfSRBSmp2H8B24cvd2ppLYo"
-    redir = "https://8080-dot-4071604-dot-devshell.appspot.com/access"
+    redir = "%s/access" % (URL)
 
     d = {"code": code, "client_id": cid, "client_secret": csc, "redirect_uri": redir, "grant_type": "authorization_code"}
 
