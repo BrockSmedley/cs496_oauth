@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <!--Import semantic -->
+    <link type="text/css" rel="stylesheet" href="/static/css/main.css" media="screen,projection" />
+    <!--Import material-icons.css-->
+    <link type="text/css" rel="stylesheet" href="/static/css/material-icons.css" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %} - VaaS</title>
+    {% endblock %}
+</head>
+<body>
+<div class="ui inverted menu">
+    <div class="ui container">
+	    <h2>OAuth2.0 Demo</h2>
+    </div>
+</div>
+
+{% block content %}
+
+{% endblock %}
+{% block footer %}<div class="ui inverted vertical footer segment">
+    <div class="ui container">
+        <div class="ui stackable inverted divided equal height stackable grid">
+            <div class="twelve wide column">
+                <p>&copy; 2018 Brock Smedley</p>
+            </div>
+        </div>
+    </div>
+</div>{% endblock %}
+
+    <!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script src="/static/framework/semantic.js"></script>
+<script>
+    $(document)
+        .ready(function () {
+            $('.ui.menu .ui.dropdown').dropdown({
+                on: 'hover'
+            });
+            $('.ui.menu a.item')
+                .on('click', function () {
+                    $(this)
+                        .addClass('active')
+                        .siblings()
+                        .removeClass('active')
+                        ;
+                })
+                ;
+        })
+        ;
+</script>
+{% block scripts %} {% endblock %}
+</body>
+</html>

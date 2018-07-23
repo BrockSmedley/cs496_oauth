@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<a href="/oauth">LOG IN</a>
+{% endblock %}
+
+{%block scripts %}
+<script src="/static/framework/components/visibility.js"></script>
+<script src="/static/framework/components/sidebar.js"></script>
+<script src="/static/framework/components/transition.js"></script>
+{% endblock %}
